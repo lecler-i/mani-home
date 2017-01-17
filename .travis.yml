@@ -1,18 +1,11 @@
 language: elixir
 
-script:
-- "mix do deps.get, test"
-
 sudo: false
 
 before_script:
   - mix deps.get --only test
-  - nvm install 6.2 && nvm use 6.2
+  - nvm install stable
+  - nvm use stable
+
 script:
   - mix test
-  - cd installer && mix test
-  - cd ../ && npm install && npm test
-after_script:
-  - cd $TRAVIS_BUILD_DIR
-  - mix deps.get --only docs
-- MIX_ENV=docs mix inch.report
