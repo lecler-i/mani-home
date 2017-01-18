@@ -1,19 +1,25 @@
-Reaxt Example
+[![Build Status](https://travis-ci.com/lecler-i/mani-home.svg?token=g6epgtUqZ1QoxxxJ3knd&branch=master)](https://travis-ci.com/lecler-i/mani-home)
+
+Mani-Home
 =============
 
-Test it now (need npm and elixir): 
+Launch it (need npm and elixir): 
 
 ```elixir
-git clone https://github.com/awetzel/reaxt-example
-cd reaxt-example
 mix deps.get
 iex -S mix
 ```
 
+Tests:
+
+```elixir
+mix deps.get
+mix test
+```
+
 Then :  
-- go to http://localhost:4000 to see an example application, 
+- go to http://localhost:4000 to see athe app. 
 - you can test hot loading by changing a react template in `web/components/xx`,
   or the css in `web/css/index.css`.
 - you can see the webpack UI in http://localhost:4000/webpack
 - you can test the javascript exception converted into elixir in http://localhost:4000/with_stacktrace
-- then just analyse and understand the `reaxt` usage
