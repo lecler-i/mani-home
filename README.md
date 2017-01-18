@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.com/lecler-i/mani-home.svg?token=g6epgtUqZ1QoxxxJ3knd&branch=master)](https://travis-ci.com/lecler-i/mani-home)
+[![codecov](https://codecov.io/gh/lecler-i/mani-home/branch/master/graph/badge.svg?token=SuVsTcWWWf)](https://codecov.io/gh/lecler-i/mani-home)
 
 Mani-Home
 =============
