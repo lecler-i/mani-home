@@ -68,7 +68,7 @@ NB: you can find your hostname in `/etc/hosts` or just write `127.0.0.1`
 ## Launch server
 
 For launch server: `mix phoenix.server`
-For launch server in iex `iexs -S mix phoenix.server`
+For launch server in iex `iex -S mix phoenix.server`
 
 Then :  
-- go to http://localhost:4000 to see athe app. 
+- go to `http://localhost:4000` to see athe app. 
