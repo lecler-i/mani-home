@@ -1,0 +1,17 @@
+{
+  "name": "mani-home",
+  "scripts": {
+  },
+  "env": {
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "hashnuke/heroku-buildpack-elixir"
+    }
+  ]
+}
