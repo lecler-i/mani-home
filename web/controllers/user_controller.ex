@@ -6,6 +6,11 @@ defmodule Manihome.UserController do
     render conn, "index.html", users: users
   end
 
-  # def show(conn, params) do
-  #end
+   def show(conn, %{"id" => id}) do
+     IO.puts Manihome.User
+      user = Repo.get(Manihome.User, id)
+      IO.puts id 
+      IO.puts "hello"
+      render conn, "show.html", user: user
+  end
 end

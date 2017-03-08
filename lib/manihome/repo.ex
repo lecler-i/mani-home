@@ -6,9 +6,9 @@ defmodule Manihome.Repo do
 
   def all(Manihome.User) do
     [
-      %Manihome.User{id: 1, mail: "test@test.com", name: "Moi", surname: "Pastoi", password: "manihime"},
+      %Manihome.User{id: "1", mail: "test@test.com", name: "Moi", surname: "Pastoi", password: "manihime"},
 
-      %Manihome.User{id: 2, mail: "tesqt@test.com", name: "Toi", surname: "PasMoi", password: "manihome"}
+      %Manihome.User{id: "2", mail: "tesqt@test.com", name: "Toi", surname: "PasMoi", password: "manihome"}
     ]
   end
 

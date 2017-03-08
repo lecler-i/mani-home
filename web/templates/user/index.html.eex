@@ -4,6 +4,7 @@
   <%= for user <- @users do %>
   <tr>
     <td><b><%= user.name %> <%= user.surname %></b> (<%= user.id %>) <%= user.mail %> </td>
+    <td><%= link "view", to: user_path(@conn, :show, user.id)%></td>
   </tr>
 <% end %>
 </table>
