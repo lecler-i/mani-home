@@ -9,7 +9,7 @@ defmodule Manihome do
     # Define workers and child supervisors to be supervised
     children = [
       # Start the Ecto repository
-      #supervisor(Manihome.Repo, []),
+      supervisor(Manihome.Repo, []),
       # Start the endpoint when the application starts
       supervisor(Manihome.Endpoint, []),
       # Start your own worker by calling: Manihome.Worker.start_link(arg1, arg2, arg3)
