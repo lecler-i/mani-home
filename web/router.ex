@@ -17,10 +17,14 @@ defmodule Manihome.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    resources "/users", UserController, only: [:index, :show, :new, :create]
+    # resources "/accommodations", AccommodationController, only: [:index]
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", Manihome do
-  #   pipe_through :api
-  # end
+   scope "/api", Manihome do
+     pipe_through :api
+     
+     get "/", PageController, :index
+     resources "/accommodations", AccommodationController, only: [:index]
+   end
 end

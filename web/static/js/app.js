@@ -30,6 +30,8 @@ class HelloWord extends React.Component {
 }
 
 ReactDOM.render(
-  <HelloWorld/>,
+  <HelloWord/>,
   document.getElementById("hello")
   )
+
+
