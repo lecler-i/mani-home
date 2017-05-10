@@ -1,5 +1,18 @@
 defmodule Manihome.Accommodation do
   use Manihome.Web, :model
+@derive {Poison.Encoder, only: [
+  :id,
+  :name,
+  :type,
+  :longitude,
+  :latitude,
+  :rent_price,
+  :date_end,
+  :room_nbr,
+  :room_available,
+  :contract_type,
+  :date_begin,
+  :draft] }
 
   schema "accommodations" do
     field :name, :string
@@ -19,7 +32,7 @@ defmodule Manihome.Accommodation do
 
   def changeset(model, params \\ :empty) do
     model
-    |> cast(params, ~w(name type rent_price rent_freq room_nbr contract_type date_begin draft), [])
+    |> cast(params, ~w(name type longitude latitude rent_price room_nbr room_available contract_type date_begin draft), [])
   end
 
 
