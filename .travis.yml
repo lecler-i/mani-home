@@ -14,4 +14,5 @@ services:
   - postgresql
 
 before_script:
+  - psql -c 'create database manihome_test;' -U postgres
   - mix ecto.migrate

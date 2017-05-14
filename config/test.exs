@@ -14,6 +14,6 @@ config :manihome, Manihome.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",
-  database: "travis_ci_test",
+  database: "manihome_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
