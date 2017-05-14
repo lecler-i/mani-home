@@ -2,12 +2,23 @@ defmodule Manihome.AccommodationMediaController do
   use Manihome.Web, :controller
 
   alias Manihome.AccommodationMedia
+  alias Manihome.Accommodation
 
-  def create(conn, %{"accommodation_id" => accommodation_id, "accommodation_medias" => accommodation_medias_params}) do
-    # acco = Repo.get!(Accommodation, accommodation_id)
-    #media_changeset = AccommodationMedia.changeset(%AccommodationMedia{}, accommodation_medias_params)
-    # acco_with_media = Ecto.Changeset.put_assoc(acco, :accommodation_medias, [media_changeset])
-    # Repo.insert!(acco_with_media)
+  def create(conn, params) do
+    acco = Repo.get!(Accommodation, params["accommodation_id"])
+    media_changeset = AccommodationMedia.changeset(%AccommodationMedia{}, params)
+    
+    #media = Repo.insert!(media_changeset)
+    acco_with_media = Ecto.Changeset.put_assoc(media_changeset, :accommodation, acco)
+    case Repo.insert!(acco_with_media) do
+      {:ok, accommodation} ->
+        conn
+        |> put_status(:created)
+      {:error, changeset} ->
+        conn
+        |> put_status(:unprocessable_entity)
+        |> render(Manihome.ChangesetView, :error, changeset: changeset)
+    end
   end
 
   def show(conn, %{"id" => id}) do

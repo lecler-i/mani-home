@@ -13,7 +13,6 @@ defmodule Manihome.AccommodationMedia do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [])
     |> cast_attachments(params, [:data])
     |> validate_required([:data])
   end
