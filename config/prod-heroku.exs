@@ -15,4 +15,4 @@ config :manihome, Manihome.Repo,
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
   ssl: true
 
-import_config "prod.secret.exs"
+# import_config "prod.secret.exs"
