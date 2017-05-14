@@ -39,5 +39,5 @@ config :manihome, Manihome.Repo,
   username: "postgres",
   password: "postgres",
   database: "manihome_dev",
-  hostname: "neowicked",
+  hostname: "localhost",
   pool_size: 10
