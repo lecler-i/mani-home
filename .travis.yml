@@ -17,6 +17,9 @@ before_script:
   - psql -c 'create database manihome_test;' -U postgres
   - mix ecto.migrate
 
+before_deploy:
+  - mix docs
+
 deploy:
   provider: pages
   skip_cleanup: true
