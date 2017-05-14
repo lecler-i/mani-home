@@ -19,7 +19,7 @@ defmodule Manihome.Mixfile do
   def application do
     [mod: {Manihome, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :comeonin]]
+                    :phoenix_ecto, :postgrex, :comeonin, :arc_ecto]]
   end
 
   # Specifies which paths to compile per environment.
@@ -40,7 +40,9 @@ defmodule Manihome.Mixfile do
      {:cowboy, "~> 1.0"},
      {:comeonin, "~> 3.0"},
      {:ecto_enum, "~> 1.0"},
-     {:ex_doc, "~>0.14", only: :dev, runtime: false}]
+     {:ex_doc, "~>0.14", only: :dev, runtime: false},
+     {:arc, "~> 0.8.0"},
+     {:arc_ecto, "~> 0.7.0"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

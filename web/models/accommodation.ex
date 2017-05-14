@@ -1,5 +1,6 @@
 defmodule Manihome.Accommodation do
   use Manihome.Web, :model
+
 @derive {Poison.Encoder, only: [
   :id,
   :name,
@@ -26,8 +27,10 @@ defmodule Manihome.Accommodation do
     field :contract_type, ContractType
     field :date_begin, :utc_datetime
     field :draft, :boolean
-
     timestamps()
+
+    has_many :accommodation_medias, Manihome.AccommodationMedia
+
   end
 
   def changeset(model, params \\ :empty) do

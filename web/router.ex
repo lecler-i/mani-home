@@ -25,6 +25,8 @@ defmodule Manihome.Router do
      pipe_through :api
      
      get "/", PageController, :index
-     resources "/accommodations", AccommodationController, only: [:index, :create, :show, :update, :delete]
+     resources "/accommodations", AccommodationController do
+       resources "/medias", AccommodationMediaController
+     end
    end
 end

@@ -9,6 +9,9 @@ use Mix.Config
 config :manihome,
   ecto_repos: [Manihome.Repo]
 
+  # Config Arc - File Uploader
+config :arc,
+  storage: Arc.Storage.Local
 # Configures the endpoint
 config :manihome, Manihome.Endpoint,
   url: [host: "localhost"],
