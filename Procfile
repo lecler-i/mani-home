@@ -1,0 +1,1 @@
+web: MIX_ENV=prod-heroku mix phoenix.server
