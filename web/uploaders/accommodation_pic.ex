@@ -1,9 +1,13 @@
 defmodule Manihome.AccommodationPic do
+  import Ecto.Query
   use Arc.Definition
 
   # Include ecto support (requires package arc_ecto installed):
   use Arc.Ecto.Definition
+  alias Manihome.AccommodationMedia
+  alias Manihome.Repo
 
+  def __storage, do: Arc.Storage.Local
    @versions [:original, :thumb]
 
   @acl :public_read
@@ -24,8 +28,8 @@ defmodule Manihome.AccommodationPic do
   # end
 
   # Override the storage directory:
-   def storage_dir(_, {_, scope}) do
-     "uploads/accommodations/pictures/#{scope.id}"
+   def storage_dir(version, {_, scope}) do
+     "uploads/accommodations/pictures"
    end
 
   # Provide a default URL if there hasn't been a file uploaded
@@ -33,6 +37,9 @@ defmodule Manihome.AccommodationPic do
      Manihome.Endpoint.url <> "/images/accommodations/default_#{version}.png"
    end
 
+  def filename(version, {file, _}) do
+    "#{version}_#{List.first Repo.all(from u in AccommodationMedia, select: count(u.id))}_#{file.file_name}"
+  end
   # Specify custom headers for s3 objects
   # Available options are [:cache_control, :content_disposition,
   #    :content_encoding, :content_length, :content_type,

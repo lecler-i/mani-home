@@ -1,5 +1,4 @@
 defmodule Manihome.Repo do
-
   @moduledoc """
   Ecto
   """
