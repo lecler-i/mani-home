@@ -15,14 +15,7 @@ defmodule Manihome.AccommodationView do
   end
 
   def render("acco_assoc.json", %{accommodation: accommodation}) do
-    IO.puts '333333dd3333333333333333333333333333333'
-    ret = %{accommodation | "medias": accommodation.accommodation_medias}
-    IO.inspect ret
-    %{
-      acco: accommodation,
-      medias: accommodation.accommodation_medias
-    }
-    ret
+    accommodation
   end
 
   def render("accommodation.json", %{accommodation: accommodation}) do

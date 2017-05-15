@@ -5,7 +5,7 @@ defmodule Manihome.AccommodationController do
 
   def index(conn, _params) do
     accommodations = Repo.all(Manihome.Accommodation)
-                     |> Repo.preload(:accommodation_medias)
+      |> Repo.preload(:accommodation_medias)
     render conn, :index, accommodations: accommodations
   end
 
@@ -14,6 +14,7 @@ defmodule Manihome.AccommodationController do
 
     case Repo.insert(changeset) do
       {:ok, accommodation} ->
+        accommodation = %{accommodation | accommodation_medias: []}
         conn
         |> put_status(:created)
         |> put_resp_header("location", accommodation_path(conn, :show, accommodation))
@@ -27,7 +28,7 @@ defmodule Manihome.AccommodationController do
 
   def show(conn, %{"id" => id}) do
     accommodation = Repo.get!(Accommodation, id)
-                    |> Repo.preload(:accommodation_medias)
+             |> Repo.preload(:accommodation_medias)
     IO.inspect accommodation
     render(conn, "show.json", accommodation: accommodation)
   end
