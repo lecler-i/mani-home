@@ -13,8 +13,7 @@ defmodule Manihome.Accommodation do
   :room_available,
   :contract_type,
   :date_begin,
-  :draft,
-  :accommodation_medias] }
+  :draft] }
 
   schema "accommodations" do
     field :name, :string

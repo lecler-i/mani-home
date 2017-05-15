@@ -30,7 +30,7 @@ defmodule Manihome.AccommodationPic do
 
   # Provide a default URL if there hasn't been a file uploaded
    def default_url(version, _) do
-     "/images/accommodations/default_#{version}.png"
+     Manihome.Endpoint.url <> "/images/accommodations/default_#{version}.png"
    end
 
   # Specify custom headers for s3 objects

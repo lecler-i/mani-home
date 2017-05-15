@@ -5,6 +5,7 @@ defmodule Manihome.AccommodationController do
 
   def index(conn, _params) do
     accommodations = Repo.all(Manihome.Accommodation)
+                     |> Repo.preload(:accommodation_medias)
     render conn, :index, accommodations: accommodations
   end
 
@@ -16,7 +17,7 @@ defmodule Manihome.AccommodationController do
         conn
         |> put_status(:created)
         |> put_resp_header("location", accommodation_path(conn, :show, accommodation))
-        |> render(:show, accommodation: accommodation)
+        |> render(:accommodation, accommodation: accommodation)
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
