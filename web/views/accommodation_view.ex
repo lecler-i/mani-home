@@ -10,12 +10,8 @@ defmodule Manihome.AccommodationView do
 
   def render("show.json", %{accommodation: accommodation}) do
     %{
-      data: render_one(accommodation, Manihome.AccommodationView, "acco_assoc.json")
+      data: render_one(accommodation, Manihome.AccommodationView, "accommodation.json")
     }
-  end
-
-  def render("acco_assoc.json", %{accommodation: accommodation}) do
-    accommodation
   end
 
   def render("accommodation.json", %{accommodation: accommodation}) do
