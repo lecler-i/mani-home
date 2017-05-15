@@ -2,7 +2,7 @@ defmodule Manihome.AccommodationMedia do
   use Manihome.Web, :model
   use Arc.Ecto.Schema
   
-  schema "accommodation_media" do
+  schema "accommodation_medias" do
     field :data, Manihome.AccommodationPic.Type
     belongs_to :accommodation, Manihome.Accommodation
     timestamps()

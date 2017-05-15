@@ -4,7 +4,7 @@ defmodule Manihome.Repo.Migrations.CreateAccommodationMedia do
   def change do
     create table(:accommodation_medias) do
       add :accommodation_id, references(:accommodations)
-      add :accommodation_pic, :string
+      add :data, :string
       timestamps()
     end
 

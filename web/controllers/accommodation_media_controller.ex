@@ -6,19 +6,15 @@ defmodule Manihome.AccommodationMediaController do
 
   def create(conn, params) do
     acco = Repo.get!(Accommodation, params["accommodation_id"])
-    media_changeset = AccommodationMedia.changeset(%AccommodationMedia{}, params)
-    
+           |> Repo.preload(:accommodation_medias)
+    acco_change = Ecto.Changeset.change(acco)
+    IO.puts '----------------------'
+     media_changeset = AccommodationMedia.changeset(%AccommodationMedia{}, params)
+    # IO.puts media_changeset
     #media = Repo.insert!(media_changeset)
-    acco_with_media = Ecto.Changeset.put_assoc(media_changeset, :accommodation, acco)
-    case Repo.insert!(acco_with_media) do
-      {:ok, accommodation} ->
-        conn
-        |> put_status(:created)
-      {:error, changeset} ->
-        conn
-        |> put_status(:unprocessable_entity)
-        |> render(Manihome.ChangesetView, :error, changeset: changeset)
-    end
+    acco_with_media = Ecto.Changeset.put_assoc(acco, :accommodation_medias, data: params["data"])
+    Repo.insert!(acco_with_media) 
+
   end
 
   def show(conn, %{"id" => id}) do
