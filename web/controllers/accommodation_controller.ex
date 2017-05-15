@@ -26,6 +26,8 @@ defmodule Manihome.AccommodationController do
 
   def show(conn, %{"id" => id}) do
     accommodation = Repo.get!(Accommodation, id)
+                    |> Repo.preload(:accommodation_medias)
+    IO.inspect accommodation
     render(conn, "show.json", accommodation: accommodation)
   end
 

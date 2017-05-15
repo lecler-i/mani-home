@@ -14,8 +14,7 @@ defmodule Manihome.AccommodationView do
   end
 
   def render("accommodation.json", %{accommodation: accommodation}) do
-    Poison.encode!(accommodation)
-    |> Poison.Parser.parse!    
+    accommodation
   end
 
 end

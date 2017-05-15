@@ -10,6 +10,6 @@ defmodule Manihome.AccommodationMediaView do
   end
 
   def render("accommodation_media.json", %{accommodation_media: accommodation_media}) do
-    %{id: accommodation_media.id}
+    Manihome.AccommodationMedia.getEncodeJson(accommodation_media)
   end
 end
