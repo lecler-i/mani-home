@@ -1,18 +1,18 @@
-defmodule Manihome.AccommodationMediasTest do
+defmodule Manihome.AccommodationMediaTest do
   use Manihome.ModelCase
 
-  alias Manihome.AccommodationMedias
+  alias Manihome.AccommodationMedia
 
   @valid_attrs %{}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
-    changeset = AccommodationMedias.changeset(%AccommodationMedias{}, @valid_attrs)
+    changeset = AccommodationMedia.changeset(%AccommodationMedia{}, @valid_attrs)
     assert changeset.valid?
   end
 
   test "changeset with invalid attributes" do
-    changeset = AccommodationMedias.changeset(%AccommodationMedias{}, @invalid_attrs)
+    changeset = AccommodationMedia.changeset(%AccommodationMedia{}, @invalid_attrs)
     refute changeset.valid?
   end
 end
