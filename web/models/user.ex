@@ -14,6 +14,7 @@ defmodule Manihome.User do
     field :password, :string, virtual: true
     field :password_hash, :string
  
+    has_many :accommodation, Manihome.Accommodation, on_delete: :delete_all
     many_to_many :chats, Manihome.Chat, join_through: "users_chats", on_delete: :delete_all
     has_many :messages, Manihome.Message
    timestamps()
@@ -22,7 +23,7 @@ defmodule Manihome.User do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, ~w(name surname mail), [])
-    |> validate_format(:email, ~r/@/)
+    |> validate_format(:mail, ~r/@/)
   end
 
   def registration_changeset(model, params) do
