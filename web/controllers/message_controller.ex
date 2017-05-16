@@ -4,18 +4,26 @@ defmodule Manihome.MessageController do
   alias Manihome.Message
 
   def index(conn, _params) do
-    message = Repo.all(Message)
-    render(conn, "index.json", message: message)
+    messages = Message
+               |> order_by([m], asc: [m.inserted_at])
+               |> Repo.all
+               |> Repo.preload(:chat)
+               |> Repo.preload(:user)
+
+    render(conn, "index.json", messages: messages)
   end
 
-  def create(conn, %{"message" => message_params}) do
-    changeset = Message.changeset(%Message{}, message_params)
-
+  def create(conn, %{"chat_id" => chat_id, "message" => message_params}) do
+    changeset = Message.changeset(%Message{}, chat_id, message_params)
     case Repo.insert(changeset) do
       {:ok, message} ->
+        message = message
+        |> Repo.preload(:chat)
+        |> Repo.preload(:user)
+
         conn
         |> put_status(:created)
-        |> put_resp_header("location", chat_message_path(conn, :show, message))
+        |> put_resp_header("location", chat_message_path(conn, :show, chat_id, message))
         |> render("show.json", message: message)
       {:error, changeset} ->
         conn
@@ -25,7 +33,10 @@ defmodule Manihome.MessageController do
   end
 
   def show(conn, %{"id" => id}) do
-    message = Repo.get!(Message, id)
+    message = Message
+              |> Repo.get!(id)
+              |> Repo.preload(:chat)
+              |> Repo.preload(:user)
     render(conn, "show.json", message: message)
   end
 

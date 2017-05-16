@@ -22,6 +22,7 @@ defmodule Manihome.User do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, ~w(name surname mail), [])
+    |> validate_format(:email, ~r/@/)
   end
 
   def registration_changeset(model, params) do

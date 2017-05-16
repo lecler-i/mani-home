@@ -6,7 +6,7 @@ defmodule Manihome.AccommodationController do
   def index(conn, _params) do
     accommodations = Manihome.Accommodation
                      |> Repo.all
-                 |> Repo.preload(:accommodation_medias)
+                     |> Repo.preload(:accommodation_medias)
     render conn, :index, accommodations: accommodations
   end
 

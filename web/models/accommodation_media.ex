@@ -41,7 +41,7 @@ defmodule Manihome.AccommodationMedia do
     |> Repo.preload(:accommodation)
     |> cast_attachments(params, [:data])
     |> put_assoc(:accommodation, acco)
-    |> validate_required([:data])
+    |> validate_required([:accommodation, :data])
   end
 
 end
