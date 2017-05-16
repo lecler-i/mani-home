@@ -1,11 +1,8 @@
 defmodule Manihome.AccommodationPic do
-  import Ecto.Query
   use Arc.Definition
 
   # Include ecto support (requires package arc_ecto installed):
   use Arc.Ecto.Definition
-  alias Manihome.AccommodationMedia
-  alias Manihome.Repo
 
   def __storage, do: Arc.Storage.Local
    @versions [:original, :thumb]

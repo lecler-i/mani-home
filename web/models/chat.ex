@@ -3,16 +3,14 @@ defmodule Manihome.Chat do
 
   alias Manihome.Repo
   alias Manihome.User
-  alias Manihome.Message
 
 @derive {Poison.Encoder, only: [
   :id,
-  :users,
-  :messages
+  :users
 ]}
   schema "chats" do
-    many_to_many :users, User, join_through: "users_chats" 
-    has_many :messages, Message, on_delete: :delete_all
+    many_to_many :users, User, join_through: "users_chats", on_delete: :delete_all 
+    has_many :messages, Manihome.Message, on_delete: :delete_all
     timestamps()
   end
 

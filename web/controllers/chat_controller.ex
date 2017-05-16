@@ -26,7 +26,9 @@ defmodule Manihome.ChatController do
   end
 
   def show(conn, %{"id" => id}) do
-    chat = Repo.get!(Chat, id)
+    chat = Chat
+           |> Repo.get!(id)
+           |> Repo.preload(:users)
     render(conn, "show.json", chat: chat)
   end
 
@@ -45,7 +47,9 @@ defmodule Manihome.ChatController do
   end
 
   def delete(conn, %{"id" => id}) do
-    chat = Repo.get!(Chat, id)
+    chat = Chat
+           |> Repo.get!(id)
+           |> Repo.preload(:messages)
 
     # Here we use delete! (with a bang) because we expect
     # it to always work (and if it does not, it will raise).

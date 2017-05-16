@@ -1,7 +1,7 @@
 defmodule Manihome.Message do
   use Manihome.Web, :model
 
-  schema "message" do
+  schema "messages" do
     field :text, :string
 
     belongs_to :user, Manihome.User
