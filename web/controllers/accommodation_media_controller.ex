@@ -2,13 +2,11 @@ defmodule Manihome.AccommodationMediaController do
   use Manihome.Web, :controller
 
   alias Manihome.AccommodationMedia
-  alias Manihome.Accommodation
 
   def create(conn, params) do
     media_changeset = AccommodationMedia.changeset(%AccommodationMedia{}, params)
 
-    # IO.inspect Repo.insert(media_changeset)
-       case Repo.insert(media_changeset) do
+    case Repo.insert(media_changeset) do
       {:ok, acco} ->
           conn
          |> put_status(:created)
@@ -24,9 +22,6 @@ defmodule Manihome.AccommodationMediaController do
     acco = Repo.get!(AccommodationMedia, id)
     conn
     |> render(:show, accommodation_media: acco)
-  end
-
-  def update(conn, %{"id" => id, "accommodation_medias" => accommodation_medias_params}) do
   end
 
   def delete(conn, %{"id" => id}) do

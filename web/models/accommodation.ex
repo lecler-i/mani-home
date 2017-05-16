@@ -14,7 +14,7 @@ defmodule Manihome.Accommodation do
   :contract_type,
   :date_begin,
   :draft,
-  :accommodation_medias] }
+  :accommodation_medias]}
 
   schema "accommodations" do
     field :name, :string
@@ -30,7 +30,7 @@ defmodule Manihome.Accommodation do
     field :draft, :boolean
     timestamps()
 
-    has_many :accommodation_medias, Manihome.AccommodationMedia
+    has_many :accommodation_medias, Manihome.AccommodationMedia, on_delete: :delete_all
 
   end
 

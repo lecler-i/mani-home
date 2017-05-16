@@ -1,20 +1,27 @@
 defmodule Manihome.User do
   use Manihome.Web, :model
 
+@derive {Poison.Encoder, only: [
+  :id,
+  :name,
+  :surname,
+  :mail
+]}
   schema "users" do
-   field :name, :string
-   field :surname, :string
-   field :mail, :string
-   field :password, :string, virtual: true
-   field :password_hash, :string
-
+    field :name, :string
+    field :surname, :string
+    field :mail, :string
+    field :password, :string, virtual: true
+    field :password_hash, :string
+ 
+    has_many :chats, Manihome.Chat
+    has_many :messages, Manihome.Message
    timestamps()
   end
   
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, ~w(name surname mail), [])
-    |> validate_length(:name, min: 1, max: 20)
   end
 
   def registration_changeset(model, params) do

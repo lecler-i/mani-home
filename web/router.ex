@@ -25,8 +25,15 @@ defmodule Manihome.Router do
      pipe_through :api
      
      get "/", PageController, :index
+
+     resources "/users", UserController
+
      resources "/accommodations", AccommodationController do
        resources "/medias", AccommodationMediaController
+     end
+
+     resources "/chats", ChatController do
+       resources "/messages", MessageController
      end
    end
 end

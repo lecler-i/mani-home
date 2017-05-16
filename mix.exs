@@ -42,7 +42,8 @@ defmodule Manihome.Mixfile do
      {:ecto_enum, "~> 1.0"},
      {:ex_doc, "~>0.14", only: :dev, runtime: false},
      {:arc, "~> 0.8.0"},
-     {:arc_ecto, "~> 0.7.0"}]
+     {:arc_ecto, "~> 0.7.0"},
+     {:credo, "~> 0.7", only: [:dev, :test, :'travis-test']}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

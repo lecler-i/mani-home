@@ -4,7 +4,6 @@ defmodule Manihome.AccommodationView do
   def render("index.json", %{accommodations: accommodations}) do
     %{ 
       data: render_many(accommodations, Manihome.AccommodationView, "accommodation.json")
-      
     }
   end
 

@@ -33,8 +33,9 @@ defmodule Manihome.AccommodationMedia do
   end
 
   def changeset(struct, params \\ %{}) do
-    acco = Repo.get!(Accommodation, params["accommodation_id"])
-      |> Repo.preload(:accommodation_medias)
+    acco = Accommodation
+           |> Repo.get!(params["accommodation_id"])
+           |> Repo.preload(:accommodation_medias)
 
     struct
     |> Repo.preload(:accommodation)

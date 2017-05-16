@@ -5,29 +5,36 @@ defmodule Manihome.UserController do
 
   def index(conn, _params) do
     users = Repo.all(Manihome.User)
-    render conn, "index.html", users: users
+    render conn, "index.json", users: users
   end
 
    def show(conn, %{"id" => id}) do
     user = Repo.get(Manihome.User, id)
-    render conn, "show.html", user: user
+    render conn, "show.json", user: user
   end
 
-   def new(conn, _params) do
-    changeset = User.changeset(%User{}) 
-    render conn, "new.html", changeset: changeset
-   end
-
    def create(conn, %{"user" => user_params}) do
-    changeset = User.registration_changeset(%User{}, user_params)
+     IO.inspect user_params
+    changeset = User.changeset(%User{}, user_params)
     case Repo.insert(changeset) do
     {:ok, user} ->
       conn
-      |> put_flash(:info, "#{user.name} created !")
-      |> redirect(to: user_path(conn, :index))
+      |> put_status(:created)
+      |> put_resp_header("location", user_path(conn, :show, user))
+      |> render(:user, user: user)
     {:error, changeset} ->
-      render(conn, "new.html", changeset: changeset)
+      conn
+      |> render(Manihome.ChangesetView, :error, changeset: changeset)
     end
    end
+
+  def delete(conn, %{"id" => id}) do
+    user = Repo.get!(User, id)
+
+    Repo.delete!(user)
+
+    send_resp(conn, :no_content, "")
+  end
+
 
 end
