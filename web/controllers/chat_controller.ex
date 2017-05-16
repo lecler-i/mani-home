@@ -4,7 +4,9 @@ defmodule Manihome.ChatController do
   alias Manihome.Chat
 
   def index(conn, _params) do
-    chats = Repo.all(Chat)
+    chats = Chat
+            |>Repo.all
+            |> Repo.preload(:users)
     render(conn, "index.json", chats: chats)
   end
 

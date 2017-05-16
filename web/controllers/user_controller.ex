@@ -29,7 +29,9 @@ defmodule Manihome.UserController do
    end
 
   def delete(conn, %{"id" => id}) do
-    user = Repo.get!(User, id)
+    user = User 
+           |> Repo.get!(id)
+           |> Repo.preload(:accommodations)
 
     Repo.delete!(user)
 

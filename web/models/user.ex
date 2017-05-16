@@ -14,7 +14,7 @@ defmodule Manihome.User do
     field :password, :string, virtual: true
     field :password_hash, :string
  
-    has_many :accommodation, Manihome.Accommodation, on_delete: :delete_all
+    has_many :accommodations, Manihome.Accommodation, on_delete: :delete_all
     many_to_many :chats, Manihome.Chat, join_through: "users_chats", on_delete: :delete_all
     has_many :messages, Manihome.Message
    timestamps()

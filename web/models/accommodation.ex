@@ -1,8 +1,11 @@
 defmodule Manihome.Accommodation do
   use Manihome.Web, :model
-
+  
+  alias Manihome.Repo
+  
 @derive {Poison.Encoder, only: [
   :id,
+  :user,
   :name,
   :type,
   :longitude,
@@ -30,13 +33,20 @@ defmodule Manihome.Accommodation do
     field :draft, :boolean
     timestamps()
 
+    belongs_to :user, Manihome.User
     has_many :accommodation_medias, Manihome.AccommodationMedia, on_delete: :delete_all
 
   end
 
   def changeset(model, params \\ :empty) do
+    user = Manihome.User
+           |> Repo.get!(1)
+           |> Repo.preload(:accommodations)
+
     model
+    |> Repo.preload(:user)
     |> cast(params, ~w(name type longitude latitude rent_price room_nbr room_available contract_type date_begin draft), [])
+    |> put_assoc(:user, user)
   end
 
 
