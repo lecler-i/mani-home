@@ -38,7 +38,7 @@ defmodule Manihome.AccommodationPic do
    end
 
   def filename(version, {file, _}) do
-    "#{version}_#{List.first Repo.all(from u in AccommodationMedia, select: count(u.id))}_#{file.file_name}"
+    "#{version}_#{file.file_name}"
   end
   # Specify custom headers for s3 objects
   # Available options are [:cache_control, :content_disposition,
