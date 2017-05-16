@@ -2,14 +2,17 @@ defmodule Manihome.Chat do
   use Manihome.Web, :model
 
   alias Manihome.Repo
+  alias Manihome.User
+  alias Manihome.Message
+
 @derive {Poison.Encoder, only: [
   :id,
   :users,
   :messages
 ]}
   schema "chats" do
-    has_many :users, Manihome.User
-    has_many :messages, Manihome.Message, on_delete: :delete_all
+    many_to_many :users, User, join_through: "users_chats" 
+    has_many :messages, Message, on_delete: :delete_all
     timestamps()
   end
 
@@ -20,7 +23,6 @@ defmodule Manihome.Chat do
     users = Enum.map params["users"], fn id ->
       User
       |> Repo.get!(id)
-      |> Repo.preload(:chats)
     end
 
     struct
