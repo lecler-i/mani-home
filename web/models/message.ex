@@ -17,7 +17,7 @@ defmodule Manihome.Message do
     belongs_to :chat, Manihome.Chat
     timestamps()
   end
-
+  
   @doc """
   Builds a changeset based on the `struct` and `params`.
   """

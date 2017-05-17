@@ -6,13 +6,16 @@ defmodule Manihome.Chat do
 
 @derive {Poison.Encoder, only: [
   :id,
-  :users
+  :users,
+  :messages,
+  :last_message
 ]}
   schema "chats" do
     many_to_many :users, User, join_through: "users_chats", on_delete: :delete_all 
     has_many :messages, Manihome.Message, on_delete: :delete_all
     timestamps()
   end
+
 
   @doc """
   Builds a changeset based on the `struct` and `params`.
