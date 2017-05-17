@@ -38,5 +38,10 @@ defmodule Manihome.UserController do
     send_resp(conn, :no_content, "")
   end
 
+  def login(conn, _params) do
+    truc = %{success: true}
+    render(conn, "status.json", status: truc)
+  end
+
 
 end

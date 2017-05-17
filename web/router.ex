@@ -11,6 +11,9 @@ defmodule Manihome.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug Joken.Plug,
+    verify: &Manihome.JWTHelpers.verify/0,
+    on_error: &Manihome.JWTHelpers.error/2 
   end
 
   scope "/", Manihome do
@@ -25,6 +28,8 @@ defmodule Manihome.Router do
      pipe_through :api
      
      get "/", PageController, :index
+
+     post "/login", UserController, :login
 
      resources "/users", UserController
 
