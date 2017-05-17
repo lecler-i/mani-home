@@ -12,9 +12,16 @@ defmodule Manihome.Router do
   pipeline :api do
     plug :accepts, ["json"]
     plug Joken.Plug,
-    verify: &Manihome.JWTHelpers.verify/0,
-    on_error: &Manihome.JWTHelpers.error/2 
+    verify: &Manihome.JWTHelper.verify/0,
+    on_error: &Manihome.JWTHelper.error/2 
+    # plug :match
   end
+
+  #def match token, tk do
+  #  IO.inspect token
+  #  IO.puts '--'
+  #  IO.inspect tk
+  #end
 
   scope "/", Manihome do
     pipe_through :browser # Use the default browser stack

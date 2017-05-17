@@ -1,4 +1,4 @@
-defmodule Manihome.JWTHelpers do
+defmodule Manihome.JWTHelper do
   import Joken, except: [verify: 1]
 
   @doc """

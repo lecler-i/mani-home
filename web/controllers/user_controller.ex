@@ -40,7 +40,7 @@ defmodule Manihome.UserController do
 
   def login(conn, _params) do
     truc = %{success: true}
-    render(conn, "status.json", status: truc)
+    render(conn, "status.json", status: conn.assigns)
   end
 
 
