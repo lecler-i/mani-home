@@ -8,11 +8,8 @@ defmodule Manihome.ChatController do
     chats = Chat
       |> Repo.all
       |> Repo.preload(:users)
-      |> Repo.preload(messages: fn messages ->
-        Message
-        |> Repo.all
-        |> Stream.map fn m -> %{m | user: m.user_id} end
-      end)
+      |> Repo.preload(messages: (from p in Message, order_by: [desc: p.inserted_at]))
+      |> Repo.preload(messages: [:user])
       |> Stream.map(fn chat -> Map.put(chat, :last_message, List.last(chat.messages)) end)
 
     render(conn, "index.json", chats: chats)
