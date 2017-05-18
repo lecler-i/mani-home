@@ -14,14 +14,11 @@ defmodule Manihome.Router do
     plug Joken.Plug,
     verify: &Manihome.JWTHelper.verify/0,
     on_error: &Manihome.JWTHelper.error/2 
-    # plug :match
   end
 
-  #def match token, tk do
-  #  IO.inspect token
-  #  IO.puts '--'
-  #  IO.inspect tk
-  #end
+  pipeline :api_auth do
+    plug Manihome.JwtAuthPlug
+  end
 
   scope "/", Manihome do
     pipe_through :browser # Use the default browser stack
@@ -34,9 +31,11 @@ defmodule Manihome.Router do
    scope "/api", Manihome do
      pipe_through :api
      
+     post "/login", UserController, :login
+
+     pipe_through :api_auth
      get "/", PageController, :index
 
-     post "/login", UserController, :login
 
      resources "/users", UserController
 

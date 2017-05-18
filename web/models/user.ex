@@ -11,6 +11,8 @@ defmodule Manihome.User do
     field :name, :string
     field :surname, :string
     field :mail, :string
+    field :avatar, :string
+    field :auth0_id, :string
     field :password, :string, virtual: true
     field :password_hash, :string
  
@@ -24,6 +26,12 @@ defmodule Manihome.User do
     model
     |> cast(params, ~w(name surname mail), [])
     |> validate_format(:mail, ~r/@/)
+  end
+
+  def jtw_changeset(model, params \\ :empty, jtw) do
+    model
+    |> changeset(params)
+    |> cast(jtw, ~w(auth0_id))
   end
 
   def registration_changeset(model, params) do

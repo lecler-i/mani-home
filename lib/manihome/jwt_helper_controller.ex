@@ -1,6 +1,6 @@
 defmodule Manihome.JwtHelperController do
   defmacro __using__(opts \\ []) do
-    key = Keyword.get(opts, :key, :default)
+    # key = Keyword.get(opts, :key, :default)
     quote do
       def action(conn, _opts) do
         apply(
@@ -9,8 +9,7 @@ defmodule Manihome.JwtHelperController do
           [
             conn,
             conn.params,
-            conn.assigns.user,
-            conn.assigns.joken_claims
+            conn.assigns.user
           ]
         )
       end
